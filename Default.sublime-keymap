@@ -1,0 +1,4 @@
+[
+    {"keys": ["f9"], "command": "next_font"},
+    {"keys": ["shift+f9"], "command": "previous_font"}
+]
