@@ -6,7 +6,7 @@ Quickly cycle between your favorite fonts in Sublime Text with the press of a ke
 Usage
 -----
 
-You can cycle through the fonts by pressing the `F9` key, and cycle backwards with `Shift+F9`.
+You can cycle through the fonts by pressing the `F10` key, and cycle backwards with `Shift+F10`.
 
 You need to set the `fonts_list` key in the `Preferences.sublime-settings` file to a list of fonts you want to cycle within. The fonts need to be **pre-installed** on the system.
 
