@@ -30,7 +30,8 @@ def cycle_font(backward=False):
         "font_face",
         "font_size",
         "line_padding_bottom",
-        "line_padding_top"
+        "line_padding_top",
+        "font_options"
     ]
     for field in fields:
         settings.set(field, font_settings[field])
