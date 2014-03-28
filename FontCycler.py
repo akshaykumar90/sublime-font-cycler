@@ -34,8 +34,11 @@ def cycle_font(backward=False):
         "font_options"
     ]
     for field in fields:
-        settings.set(field, font_settings[field])
+        if field in font_settings:
+            settings.set(field, font_settings[field])
     sublime.save_settings("Preferences.sublime-settings")
+    if not "font_size" in font_settings:
+        font_settings["font_size"] = settings.get("font_size")
     sublime.status_message('Font Face: %s (%d)' %
         (font_settings["font_face"], font_settings["font_size"]))
 
