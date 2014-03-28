@@ -10,6 +10,8 @@ You can cycle through the fonts by pressing the `F10` key, and cycle backwards w
 
 You need to set the `fonts_list` key in the `Preferences.sublime-settings` file to a list of fonts you want to cycle within. The fonts need to be **pre-installed** on the system.
 
+You can specify just a font name or an object with the properties `font_face`, `font_size`, `line_padding_bottom` and `line_padding_top`. Any of those is optional, so only existing properties will be set.
+
 ```JSON
 "fonts_list":
 	[
@@ -29,6 +31,47 @@ You need to set the `fonts_list` key in the `Preferences.sublime-settings` file 
 		"Source Code Pro",
 		"Ubuntu Mono"
 	]
+```
+
+```JSON
+"fonts_list":
+[
+	{
+		"font_face": "Consolas",
+		"font_size": 9,
+		"line_padding_bottom": 1,
+		"line_padding_top": 0
+	},
+	{
+		"font_face": "Courier",
+		"font_size": 12
+	},
+	{
+		"font_face": "Menlo",
+		"font_size": 10,
+		"line_padding_bottom": 1,
+		"line_padding_top": 0
+	}
+]
+```
+
+Or even a mixed approach:
+
+```JSON
+"fonts_list":
+[
+	"Consolas",
+	{
+		"font_face": "Courier",
+		"font_size": 12
+	},
+	{
+		"font_face": "Menlo",
+		"font_size": 10,
+		"line_padding_bottom": 1,
+		"line_padding_top": 0
+	}
+]
 ```
 
 Configuration

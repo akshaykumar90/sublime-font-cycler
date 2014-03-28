@@ -1,22 +1,42 @@
 import sublime, sublime_plugin
 
 def cycle_font(backward=False):
-    s = sublime.load_settings("Preferences.sublime-settings")
-    fonts_list = s.get("fonts_list", [])
-    
-    if not fonts_list:
+    settings = sublime.load_settings("Preferences.sublime-settings")
+    settings_fonts_list = settings.get("fonts_list", [])
+    if not settings_fonts_list:
         return
+    fonts_list_size = len(settings_fonts_list)
+    index_delta = -1 if backward else 1
+
+    fonts_list = []
+    for index in range(0, fonts_list_size):
+        item = settings_fonts_list[index]
+        if isinstance(item, str):
+            item = { "font_face": item }
+        fonts_list.append(item)
 
     try:
-        index = fonts_list.index(s.get("font_face"))
-        new_index = (index + (-1 if backward else 1)) % len(fonts_list)
+        current_font_face = settings.get("font_face")
+        new_index = 0
+        for index in range(0, fonts_list_size):
+            if fonts_list[index]["font_face"] == current_font_face:
+                new_index = (index + index_delta) % len(fonts_list)
+                break
     except ValueError:
         new_index = 0
 
-    s.set("font_face", fonts_list[new_index])
+    font_settings = fonts_list[new_index]
+    fields = [
+        "font_face",
+        "font_size",
+        "line_padding_bottom",
+        "line_padding_top"
+    ]
+    for field in fields:
+        settings.set(field, font_settings[field])
     sublime.save_settings("Preferences.sublime-settings")
-
-    sublime.status_message('Font Face: ' + fonts_list[new_index])
+    sublime.status_message('Font Face: %s (%d)' %
+        (font_settings["font_face"], font_settings["font_size"]))
 
 class NextFontCommand(sublime_plugin.TextCommand):
     def run(self, edit):
