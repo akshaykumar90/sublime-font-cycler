@@ -1,46 +1,43 @@
+from collections import namedtuple
 import sublime, sublime_plugin
+
+Field = namedtuple("Field", ["name", "default"])
 
 def cycle_font(backward=False):
     settings = sublime.load_settings("Preferences.sublime-settings")
     settings_fonts_list = settings.get("fonts_list", [])
+
     if not settings_fonts_list:
         return
-    fonts_list_size = len(settings_fonts_list)
-    index_delta = -1 if backward else 1
 
     fonts_list = []
-    for index in range(0, fonts_list_size):
-        item = settings_fonts_list[index]
-        if isinstance(item, str):
+    for item in settings_fonts_list:
+        if isinstance(item, basestring):
             item = { "font_face": item }
-        fonts_list.append(item)
+        if "font_face" in item:
+            fonts_list.append(item)
 
-    try:
-        current_font_face = settings.get("font_face")
-        new_index = 0
-        for index in range(0, fonts_list_size):
-            if fonts_list[index]["font_face"] == current_font_face:
-                new_index = (index + index_delta) % len(fonts_list)
-                break
-    except ValueError:
-        new_index = 0
+    fonts_list_size = len(fonts_list)
+    index_delta = -1 if backward else 1
+    current_font_face = settings.get("font_face")
+    new_index = 0
+    for index in range(fonts_list_size):
+        if fonts_list[index]["font_face"] == current_font_face:
+            new_index = (index + index_delta) % len(fonts_list)
+            break
 
     font_settings = fonts_list[new_index]
     fields = [
-        "font_face",
-        "font_size",
-        "line_padding_bottom",
-        "line_padding_top",
-        "font_options"
+        Field("font_face", ""),
+        Field("font_size", settings.get("font_size")),
+        Field("line_padding_bottom", 0),
+        Field("line_padding_top", 0)
     ]
     for field in fields:
-        if field in font_settings:
-            settings.set(field, font_settings[field])
+        settings.set(field.name, font_settings.get(field.name, field.default))
     sublime.save_settings("Preferences.sublime-settings")
-    if not "font_size" in font_settings:
-        font_settings["font_size"] = settings.get("font_size")
-    sublime.status_message('Font Face: %s (%d)' %
-        (font_settings["font_face"], font_settings["font_size"]))
+
+    sublime.status_message('Font Face: %s' % (font_settings["font_face"],))
 
 class NextFontCommand(sublime_plugin.TextCommand):
     def run(self, edit):
