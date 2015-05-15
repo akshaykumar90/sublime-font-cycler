@@ -12,7 +12,7 @@ def cycle_font(backward=False):
 
     fonts_list = []
     for item in settings_fonts_list:
-        if isinstance(item, basestring):
+        if isinstance(item, str):
             item = { "font_face": item }
         if "font_face" in item:
             fonts_list.append(item)
