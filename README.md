@@ -21,48 +21,48 @@ You can specify just a font name or an object with the properties `font_face`, `
 
 ```JSON
 {
-	"fonts_list":
-		[
-			"Andale Mono",
-			"Consolas",
-			"Courier",
-			"Courier New",
-			"Envy Code R",
-			"Inconsolata",
-			"Lucida Console",
-			"Menlo",
-			"Meslo LG S",
-			"Meslo LG M",
-			"Meslo LG L",
-			"Monaco",
-			"ProFontX",
-			"Source Code Pro",
-			"Ubuntu Mono"
-		]
+  "fonts_list":
+    [
+      "Andale Mono",
+      "Consolas",
+      "Courier",
+      "Courier New",
+      "Envy Code R",
+      "Inconsolata",
+      "Lucida Console",
+      "Menlo",
+      "Meslo LG S",
+      "Meslo LG M",
+      "Meslo LG L",
+      "Monaco",
+      "ProFontX",
+      "Source Code Pro",
+      "Ubuntu Mono"
+    ]
 }
 ```
 
 ```JSON
 {
-	"fonts_list":
-	[
-		{
-			"font_face": "Consolas",
-			"font_size": 9,
-			"line_padding_bottom": 1,
-			"line_padding_top": 0
-		},
-		{
-			"font_face": "Courier",
-			"font_size": 12
-		},
-		{
-			"font_face": "Menlo",
-			"font_size": 10,
-			"line_padding_bottom": 1,
-			"line_padding_top": 0
-		}
-	]
+  "fonts_list":
+  [
+    {
+      "font_face": "Consolas",
+      "font_size": 9,
+      "line_padding_bottom": 1,
+      "line_padding_top": 0
+    },
+    {
+      "font_face": "Courier",
+      "font_size": 12
+    },
+    {
+      "font_face": "Menlo",
+      "font_size": 10,
+      "line_padding_bottom": 1,
+      "line_padding_top": 0
+    }
+  ]
 }
 ```
 
@@ -70,20 +70,20 @@ Or even a mixed approach:
 
 ```JSON
 {
-	"fonts_list":
-	[
-		"Consolas",
-		{
-			"font_face": "Courier",
-			"font_size": 12
-		},
-		{
-			"font_face": "Menlo",
-			"font_size": 10,
-			"line_padding_bottom": 1,
-			"line_padding_top": 0
-		}
-	]
+  "fonts_list":
+  [
+    "Consolas",
+    {
+      "font_face": "Courier",
+      "font_size": 12
+    },
+    {
+      "font_face": "Menlo",
+      "font_size": 10,
+      "line_padding_bottom": 1,
+      "line_padding_top": 0
+    }
+  ]
 }
 ```
 
