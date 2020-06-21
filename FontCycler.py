@@ -51,7 +51,9 @@ def cycle_font(backward=False):
         Field('font_face', ''),
         Field('font_size', settings.get('font_size')),
         Field('line_padding_bottom', settings.get('line_padding_bottom')),
-        Field('line_padding_top', settings.get('line_padding_top'))
+        Field('line_padding_top', settings.get('line_padding_top')),
+        Field('word_wrap', settings.get('word_wrap')),
+        Field('wrap_width', settings.get('wrap_width'))
     ]
     for field in fields:
         settings.set(field.name, font_settings.get(field.name, field.default))
