@@ -39,11 +39,9 @@ def cycle_font(backward=False):
     delta = -1 if backward else 1
     current_font_face = settings.get('font_face')
     current_font_size = settings.get('font_size')
-    cur_pos = position_by_key.get(
-        (current_font_face, current_font_size)
-    ) or position_by_key.get(
-        (current_font_face, ANY_FONT_SIZE)
-    )
+    cur_pos = position_by_key.get((current_font_face, current_font_size))
+    if cur_pos is None:
+        cur_pos = position_by_key.get((current_font_face, ANY_FONT_SIZE))
     new_pos = (cur_pos + delta) % len(fonts_list) if cur_pos is not None else 0
 
     font_settings = fonts_list[new_pos]
